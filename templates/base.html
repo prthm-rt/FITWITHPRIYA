@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+      <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png', v=4) }}">
+      <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/icon.png', v=4) }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}30-Minute Strength Training Classes{% endblock %}</title>
+    
+    <meta name="description" content="{% block description %}Join Fit with Priya for 30-minute strength training classes, 3 times a week. Perfect for busy lives with 24/7 support and personalized nutrition advice.{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}strength training, 30 minute workouts, fitness classes, muscle building, metabolism boost, consistency, Fit with Priya, group fitness{% endblock %}">
+    <meta name="author" content="Fit with Priya">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="{% block og_title %}Fit with Priya - Transform Your Body & Mind{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Professional personal training services to help you achieve your fitness goals. Custom workout plans, nutrition guidance, and motivation.{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:image" content="{% block og_image %}{{ url_for('static', filename='fitness-hero.jpg', _external=True) }}{% endblock %}">
+    <meta property="og:site_name" content="Fit with Priya">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Fit with Priya{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Professional personal training services to help you achieve your fitness goals.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ url_for('static', filename='fitness-hero.jpg', _external=True) }}{% endblock %}">
+    
+    <link rel="canonical" href="{{ request.url }}">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Fit with Priya",
+      "description": "30-minute strength training classes, 3 times a week. Perfect for busy lives with 24/7 support and personalized nutrition advice.",
+      "url": "{{ request.url_root }}",
+      "email": "fittwithpriya@gmail.com",
+      "openingHours": "Mo-We-Fr 18:00-19:00",
+      "image": "{{ url_for('static', filename='fitness-hero.jpg', _external=True) }}",
+      "sameAs": [
+        "https://www.instagram.com/fitt_with_priya"
+      ]
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <style>
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="{{ url_for('index') }}">
+      <img src="{{ url_for('static', filename='images/icon.png') }}" alt="Fit with Priya" height="40" class="me-2">
+      Fit with Priya
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><button class="nav-link btn btn-link" onclick="scrollToSection('home')">Home</button></li>
+        <li class="nav-item"><button class="nav-link btn btn-link" onclick="scrollToSection('journey')">My Journey</button></li>
+        <li class="nav-item"><button class="nav-link btn btn-link" onclick="scrollToSection('services')">Services</button></li>
+        <li class="nav-item"><button class="nav-link btn btn-link" onclick="scrollToSection('reviews')">Reviews</button></li>
+        <li class="nav-item"><button class="nav-link btn btn-link" onclick="scrollToSection('about')">About</button></li>
+        <li class="nav-item"><button class="nav-link btn btn-link" onclick="scrollToSection('contact')">Contact</button></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-5" role="alert" style="z-index: 9999;">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+
+<footer class="py-5 text-light mt-0" style="background: linear-gradient(135deg, var(--priya-pink) 0%, var(--priya-bright-yellow) 50%, var(--priya-yellow) 100%) !important;">
+  <div class="container text-center">
+    <p class="mb-1">&copy; 2025 Fit with Priya. All Rights Reserved.</p>
+    <div class="mt-2">
+      <a href="https://www.instagram.com/fitt_with_priya" target="_blank" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:fittwithpriya@gmail.com" class="text-light me-3"><i class="fas fa-envelope"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/reviews.js') }}"></script>
+<script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+
+<script>
+function scrollToSection(sectionId) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+        element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
+</script>
+</body>
+</html>

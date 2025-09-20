@@ -1,0 +1,162 @@
+{% extends "base.html" %} <!-- Inheritance -->
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <h1 class="mb-4">Website Analytics</h1>
+    
+    <div class="row">
+        <!-- Stats Cards -->
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <h3>{{ total_visits }}</h3>
+                    <p class="text-muted">Total Visits</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <h3>{{ unique_visitors }}</h3>
+                    <p class="text-muted">Unique Visitors</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <h3>{{ total_reviews }}</h3>
+                    <p class="text-muted">Reviews Submitted</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <h3>{{ total_contacts }}</h3>
+                    <p class="text-muted">Contact Messages</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- Conversion Stats -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Conversion Rates</h5>
+                    <p>Review Conversion: <strong>{{ review_conversion }}%</strong></p>
+                    <p>Contact Conversion: <strong>{{ contact_conversion }}%</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Review Statistics</h5>
+                    <p>Average Rating: <strong>{{ avg_rating }} / 5</strong></p>
+                    <p>Total Reviews: <strong>{{ total_reviews }}</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- Visits Chart -->
+        <div class="col-md-12 mb-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Daily Visits (Last 7 Days)</h5>
+                    <canvas id="visitsChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- Page Popularity -->
+        <div class="col-md-12 mb-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Page Popularity</h5>
+                    <canvas id="pagesChart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Daily Visits Chart
+    const visitsDates = JSON.parse ('{{ dates|safe }}');
+    const visitCounts = JSON.parse ('{{ visit_counts|safe }}');
+    
+    if (document.getElementById('visitsChart')) {
+        new Chart(document.getElementById('visitsChart'), {
+            type: 'line',
+            data: {
+                labels: visitsDates,
+                datasets: [{
+                    label: 'Daily Visits',
+                    data: visitCounts,
+                    borderColor: '#8bbabb',
+                    backgroundColor: 'rgba(139, 186, 187, 0.2)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+    
+    // Page Popularity Chart
+    const pageNames = JSON.parse('{{ page_names|safe }}');
+    const pageCounts = JSON.parse ('{{ page_counts|safe }}');
+    
+    if (document.getElementById('pagesChart')) {
+        new Chart(document.getElementById('pagesChart'), {
+            type: 'bar',
+            data: {
+                labels: pageNames,
+                datasets: [{
+                    label: 'Page Views',
+                    data: pageCounts,
+                    backgroundColor: [
+                        'rgba(139, 186, 187, 0.6)',
+                        'rgba(171, 212, 171, 0.6)',
+                        'rgba(207, 232, 190, 0.6)',
+                        'rgba(239, 245, 225, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(139, 186, 187, 1)',
+                        'rgba(171, 212, 171, 1)',
+                        'rgba(207, 232, 190, 1)',
+                        'rgba(239, 245, 225, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+</script>
+{% endblock %}

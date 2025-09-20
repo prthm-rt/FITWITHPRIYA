@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="home" class="hero-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 mx-auto text-center">
+        <h1 class="display-2 fw-bold mb-5">Fit with Priya</h1>
+        <p class="lead mb-5">30-minute strength training classes, 3 times a week—bite-sized, effective, and perfect for busy lives. Join me to build consistency, strength, and lasting change.</p>
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-4">
+          <button onclick="scrollToSection('contact')" class="btn btn-primary btn-lg">Start Your Journey</button>
+          <button onclick="scrollToSection('services')" class="btn btn-primary btn-lg">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="journey" class="py-5 section-alt-2">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h2 class="display-4 fw-bold mb-5">My Journey</h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <img src="{{ url_for('static', filename='images/transformation.png.jpg') }}"alt="Priya's transformation"class="img-fluid rounded shadow-lg">
+            <img src="{{ url_for('static', filename='images/kettlebell.jpg') }}" alt="kettlebell workout" class="img-fluid rounded shadow-lg">
+          </div>
+          <div class="col-lg-6">
+            <p class="mb-4">Strength training changed my life. I lost 20+ kg, improved my thyroid health, built real stamina, and feel stronger and leaner than ever. With 10+ years of experience and a Level 3 fitness certification, I now help women achieve the same.</p>
+            <p class="mb-4">Why strength training? It builds lean muscle, not bulk. It raises metabolism so you burn more fat at rest. It supports joints and lowers injury risk. It improves balance, posture, and bone density. It shapes your body in ways cardio alone cannot. It lifts mood, confidence, and energy.</p>
+            <p class="mb-4">The program is simple: 30 minutes, three times a week. Short, focused, and easy to stick to, designed for busy schedules without sacrificing results.</p>
+            <p class="mb-4">What you get: nutrition support, practical health guidance, occasional at-home sessions, regular measurement check-ins, and ongoing motivation and accountability — all at no extra cost.</p>
+            <p class="h5">Ready to get started? Message me to learn how the program works and how it can help you get stronger, leaner, and feel amazing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="py-5 section-alt-1">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        <h2 class="display-4 fw-bold mb-5">Our Goal</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <p class="lead mb-5">As we grow older, strength training becomes essential to maintain muscle, boost metabolism, and stay strong.</p>
+            <p class="mb-5">My program is built on <strong>consistency</strong> - Consistency is the key to fitness because results come from what you do regularly—not what you do once in a while. Small, steady steps build strength, habits, and lasting change.</p>
+            <p class="mb-5">Clients are seeing amazing, measurable results, and I'm with you every step of the way with 24/7 support and personalized nutrition advice.</p>
+            <p class="mb-5">I also have free check-in sessions where I take measurements, monitor progress, and connect as a group—because accountability matters.</p>
+            <p class="h4 text-primary">Join me to get stronger, stay consistent, and feel your best—it's never too late to start.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="py-5 section-alt-2">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h2 class="display-4 fw-bold mb-5">What You Get</h2>
+      </div>
+    </div>
+    <div class="row g-5">
+      <div class="col-lg-4 col-md-6">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <div class="mb-4">
+              <i class="fas fa-clock fa-3x text-primary"></i>
+            </div>
+            <h5 class="card-title">30-Minute Classes</h5>
+            <p class="card-text">Bite-sized, effective workouts that fit perfectly into your busy schedule. No more excuses!</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <div class="mb-4">
+              <i class="fas fa-calendar-week fa-3x text-primary"></i>
+            </div>
+            <h5 class="card-title">3 Times a Week</h5>
+            <p class="card-text">Consistent schedule that builds habits and delivers real results. Monday, Wednesday, Friday.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <div class="mb-4">
+              <i class="fas fa-heart fa-3x text-primary"></i>
+            </div>
+            <h5 class="card-title">24/7 Support</h5>
+            <p class="card-text">Personalized nutrition advice and constant motivation. I'm with you every step of the way.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <div class="mb-4">
+              <i class="fas fa-chart-line fa-3x text-primary"></i>
+            </div>
+            <h5 class="card-title">Free Check-ins</h5>
+            <p class="card-text">Regular measurements, progress monitoring, and group accountability sessions to keep you on track.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <div class="mb-4">
+              <i class="fas fa-users fa-3x text-primary"></i>
+            </div>
+            <h5 class="card-title">Community Support</h5>
+            <p class="card-text">Connect with like-minded individuals who are on the same journey. Together we're stronger!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="py-5 section-alt-3">
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h2 class="display-4 fw-bold mb-5">What Our Clients Say</h2>
+      </div>
+    </div>
+
+    <div id="review-alert" class="alert d-none" role="alert"></div>
+
+    <div id="reviews-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 mb-5">
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="text-center mb-5">Share Your Experience</h3>
+            <form id="review-form" method="POST">
+              <div class="row g-4">
+                <div class="col-md-6">
+                  <label for="name" class="form-label">Your Name</label>
+                  <input id="name" type="text" name="name" class="form-control" placeholder="Enter your name" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="rating" class="form-label">Rating</label>
+                  <select name="rating" id="rating" class="form-control" required>
+                    <option value="" disabled selected>Select rating</option>
+                    <option value="1">1 / 5</option>
+                    <option value="2">2 / 5</option>
+                    <option value="3">3 / 5</option>
+                    <option value="4">4 / 5</option>
+                    <option value="5">5 / 5</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="comment" class="form-label">Your Review</label>
+                  <textarea id="comment" name="comment" rows="4" class="form-control" placeholder="Tell us about your experience..." required></textarea>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-primary btn-lg">Submit Review</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="py-4 section-alt-1">
+  <div class="container">
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-8 text-center">
+        <h2 class="display-4 fw-bold mb-3">Ready to Start Your Journey?</h2>
+        <p class="lead mb-4">Get in touch to learn more about our strength training classes and begin your transformation today!</p>
+      </div>
+    </div>
+    <div class="row g-5 justify-content-center">
+      <div class="col-lg-10">
+        <div class="row g-5">
+          <div class="col-lg-4">
+            <div class="row g-3">
+              <div class="col-12">
+                <div class="card h-100">
+                  <div class="card-body text-center">
+                    <div class="mb-3">
+                      <i class="fas fa-envelope fa-3x text-primary"></i>
+                    </div>
+                    <h5 class="mb-2">Email</h5>
+                    <p class="mb-0">fittwithpriya@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-12">
+                <div class="card h-100">
+                  <div class="card-body text-center">
+                    <div class="mb-3">
+                      <i class="fab fa-instagram fa-3x text-primary"></i>
+                    </div>
+                    <h5 class="mb-2">Instagram</h5>
+                    <p class="mb-0">@fitt_with_priya</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-8">
+            <div class="card h-100">
+              <div class="card-body">
+                <h3 class="mb-4">Send a Message</h3>
+                <form id="contactForm" method="POST" novalidate>
+                  {{ contact_form.csrf_token }}
+                  <div class="row g-4">
+                    <div class="col-md-6">
+                      <label for="contactName" class="form-label">Your Name</label>
+                      {{ contact_form.name(class="form-control", id="contactName", placeholder="Enter your name") }}
+                      <div class="invalid-feedback" id="contactNameError"></div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="contactEmail" class="form-label">Email Address</label>
+                      {{ contact_form.email(class="form-control", id="contactEmail", placeholder="Enter your email") }}
+                      <div class="invalid-feedback" id="contactEmailError"></div>
+                    </div>
+                    <div class="col-12">
+                      <label for="contactMessage" class="form-label">Message</label>
+                      {{ contact_form.message(class="form-control", id="contactMessage", rows="5", placeholder="Tell me about your fitness goals...") }}
+                      <div class="invalid-feedback" id="contactMessageError"></div>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-primary btn-lg w-100" id="submitContact">
+                        <span id="contactSubmitText">Send Message</span>
+                        <span id="contactLoadingSpinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

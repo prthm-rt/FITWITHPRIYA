@@ -26,8 +26,8 @@ def deploy_to_heroku():
     run_command("heroku config:set SESSION_SECRET=your_secret_key_here")
     
     run_command("git add .")
-    run_command("git commit -m 'Deploy Fit with Priya website'")
-    run_command("git push heroku main")
+    run_command('git commit -m "Deploy Fit with Priya website"')
+    run_command("git push heroku master")
     
     print(f"Website deployed to: https://{app_name}.herokuapp.com")
     return True

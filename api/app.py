@@ -296,9 +296,9 @@ Allow: /
 Sitemap: ''' + request.url_root + '''sitemap.xml'''
     return Response(robots_txt, mimetype='text/plain')
 
+@app.get("/api/health")
+def health():
+    return jsonify(ok=True)
+
 if __name__ == '__main__':
     app.run(debug=True)
-
-# Vercel entry point
-def handler(request):
-    return app(request.environ, lambda *args: None)

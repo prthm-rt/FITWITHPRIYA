@@ -1,12 +1,14 @@
-# /api/app.py
 from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.get("/")
 def home():
     return "Hello from Flask on Vercel"
 
-@app.route("/api/health")
+@app.get("/api/health")
 def health():
     return jsonify(ok=True)
+
+if __name__ == "__main__":
+    app.run(debug=True)

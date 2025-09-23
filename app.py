@@ -298,3 +298,7 @@ Sitemap: ''' + request.url_root + '''sitemap.xml'''
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# Vercel entry point
+def handler(request):
+    return app(request.environ, lambda *args: None)

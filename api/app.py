@@ -3,10 +3,10 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-@app.get("/")
+@app.route("/")
 def home():
     return "Hello from Flask on Vercel"
 
-@app.get("/api/health")
+@app.route("/api/health")
 def health():
     return jsonify(ok=True)

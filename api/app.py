@@ -1,13 +1,11 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, render_template, jsonify
 
+# app.py lives in api/, your assets are one level up
 app = Flask(__name__, static_folder="../static", template_folder="../templates")
 
 @app.get("/")
 def index():
-    # If you have a templates/index.html, this will serve it:
-    # return render_template("index.html")
-    # Or just return JSON/text for now:
-    return jsonify({"status": "ok", "app": "flask"})
+    return render_template("index.html")  # serve your real homepage
 
 @app.get("/api/hello")
 def hello():
@@ -16,6 +14,3 @@ def hello():
 @app.get("/api/health")
 def health():
     return jsonify(ok=True)
-
-if __name__ == "__main__":
-    app.run(debug=True)

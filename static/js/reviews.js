@@ -10,20 +10,20 @@ document.addEventListener('DOMContentLoaded', function () {
         if (data.success) {
           reviewsContainer.innerHTML = '';
           data.reviews.forEach(review => {
-            const card = `
-              <div class="col">
-                <div class="card bg-dark text-light h-100 shadow-sm border-0">
-                  <div class="card-body">
-                    <h5 class="card-title">${review.name}</h5>
-                    <p class="card-text">${review.comment}</p>
-                    <div class="text-warning mb-2">
-                      ${review.rating} / 5
-                    </div>
-                    <small class="text-muted">${review.date}</small>
+          const card = `
+            <div class="col">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                  <h5 class="card-title">${review.name}</h5>
+                  <p class="card-text">${review.comment}</p>
+                  <div class="text-warning mb-2">
+                    ${review.rating} / 5
                   </div>
+                  <small class="text-muted">${review.date}</small>
                 </div>
               </div>
-            `;
+            </div>
+          `;
             reviewsContainer.innerHTML += card;
           });
         }

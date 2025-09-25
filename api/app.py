@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template, jsonify
+import datetime
+from flask import Flask, render_template, jsonify, request
 from flask_wtf import CSRFProtect
 from forms import ContactForm
 
@@ -27,3 +28,32 @@ def health():
 @app.errorhandler(404)
 def not_found(e):
     return render_template("index.html", contact_form=ContactForm()), 404
+
+# --- Reviews API: in-memory demo storage ---
+reviews = []
+
+@app.route("/reviews", methods=["GET", "POST"])
+def reviews_handler():
+    if request.method == "GET":
+        return jsonify(success=True, reviews=reviews)
+
+    # POST
+    name = request.form.get("name", "").strip()
+    comment = request.form.get("comment", "").strip()
+    rating = request.form.get("rating", "").strip()
+
+    if not (name and comment and rating):
+        return jsonify(success=False, errors={"form": "Missing fields"}), 400
+
+    # optional duplicate check
+    if any(r.get("name") == name and r.get("comment") == comment for r in reviews):
+        return jsonify(success=False, errors={"duplicate": "Duplicate review"}), 400
+
+    review = {
+        "name": name,
+        "comment": comment,
+        "rating": rating,
+        "date": datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    }
+    reviews.append(review)
+    return jsonify(success=True)

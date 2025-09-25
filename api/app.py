@@ -67,6 +67,7 @@ def reviews_handler():
 # ---------------- Admin auth and stats ----------------
 ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "admin")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "password")
+PREVIEW_TOKEN = os.environ.get("PREVIEW_TOKEN")
 
 @csrf.exempt
 @app.route("/login", methods=["GET", "POST"])
@@ -96,6 +97,42 @@ def stats():
     avg_rating = round(sum(r.get("rating", 0) for r in reviews) / total_reviews, 2) if total_reviews else 0
 
     # Placeholder analytics (no DB yet)
+    total_visits = 0
+    unique_visitors = 0
+    total_contacts = 0
+    review_conversion = 0
+    contact_conversion = 0
+    dates = []
+    visit_counts = []
+    page_names = []
+    page_counts = []
+
+    return render_template(
+        "stats.html",
+        total_visits=total_visits,
+        unique_visitors=unique_visitors,
+        total_reviews=total_reviews,
+        total_contacts=total_contacts,
+        review_conversion=review_conversion,
+        contact_conversion=contact_conversion,
+        avg_rating=avg_rating,
+        dates=dates,
+        visit_counts=visit_counts,
+        page_names=page_names,
+        page_counts=page_counts,
+    )
+
+@app.get("/stats-preview")
+def stats_preview():
+    # Read-only stats without login, gated by a token in query params
+    if not PREVIEW_TOKEN:
+        return jsonify(error="PREVIEW_TOKEN not set"), 403
+    if request.args.get("token") != PREVIEW_TOKEN:
+        return jsonify(error="Invalid token"), 403
+
+    total_reviews = len(reviews)
+    avg_rating = round(sum(r.get("rating", 0) for r in reviews) / total_reviews, 2) if total_reviews else 0
+
     total_visits = 0
     unique_visitors = 0
     total_contacts = 0

@@ -1,7 +1,7 @@
 import os
 import re
 import datetime
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 from flask_wtf import CSRFProtect
 from forms import ContactForm
 
@@ -63,3 +63,60 @@ def reviews_handler():
     }
     reviews.append(review)
     return jsonify(success=True)
+
+# ---------------- Admin auth and stats ----------------
+ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "admin")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "password")
+
+@csrf.exempt
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "GET":
+        return render_template("login.html")
+
+    # POST: simple username/password check
+    username = (request.form.get("username") or "").strip()
+    password = (request.form.get("password") or "").strip()
+    if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+        session["is_admin"] = True
+        return redirect(url_for("stats"))
+    return render_template("login.html"), 401
+
+@app.get("/logout")
+def logout():
+    session.pop("is_admin", None)
+    return redirect(url_for("index"))
+
+@app.get("/stats")
+def stats():
+    if not session.get("is_admin"):
+        return redirect(url_for("login"))
+
+    total_reviews = len(reviews)
+    avg_rating = round(sum(r.get("rating", 0) for r in reviews) / total_reviews, 2) if total_reviews else 0
+
+    # Placeholder analytics (no DB yet)
+    total_visits = 0
+    unique_visitors = 0
+    total_contacts = 0
+    review_conversion = 0
+    contact_conversion = 0
+    dates = []
+    visit_counts = []
+    page_names = []
+    page_counts = []
+
+    return render_template(
+        "stats.html",
+        total_visits=total_visits,
+        unique_visitors=unique_visitors,
+        total_reviews=total_reviews,
+        total_contacts=total_contacts,
+        review_conversion=review_conversion,
+        contact_conversion=contact_conversion,
+        avg_rating=avg_rating,
+        dates=dates,
+        visit_counts=visit_counts,
+        page_names=page_names,
+        page_counts=page_counts,
+    )
